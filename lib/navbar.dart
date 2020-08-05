@@ -32,7 +32,7 @@ class _NavbarState extends State<NavBar> {
       backgroundColor: Colors.white,
       body: SafeArea(child: _navView.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         currentIndex: _selectedIndex,
         items: _navbarList.map((item) => BottomNavigationBarItem(icon: item.icon, activeIcon: item.activeIcon, title: Text(item.title))).toList(),
         showSelectedLabels: false,

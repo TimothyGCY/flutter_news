@@ -5,7 +5,7 @@ const apiKey = "a35debb2a4104c729fdeba2b0fa15414";
 
 var activeTab = GoogleFonts.roboto(
   textStyle: TextStyle(
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.black
   ),
 );
@@ -14,6 +14,6 @@ var inactiveTab = GoogleFonts.roboto(
   textStyle: TextStyle(
     fontSize: 14,
     color: Colors.grey[400],
-    fontWeight: FontWeight.bold
+//    fontWeight: FontWeight.bold
   ),
 );
