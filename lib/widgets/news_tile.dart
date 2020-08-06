@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_news/views/news_webview.dart';
 
 class NewsTile extends StatelessWidget {
   final String img, title, content, desc, url;
@@ -9,13 +10,13 @@ class NewsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-//      onTap: (){
-//        Navigator.push(context, MaterialPageRoute(
-//            builder: (context) => ArticleView(
-//              postUrl: posturl,
-//            )
-//        ));
-//      },
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => ArticleWebView(
+              postUrl: url,
+            )
+        ));
+      },
       child: Container(
           margin: EdgeInsets.only(bottom: 24),
           width: MediaQuery.of(context).size.width,
