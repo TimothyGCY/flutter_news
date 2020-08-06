@@ -6,7 +6,8 @@ const apiKey = "a35debb2a4104c729fdeba2b0fa15414";
 var activeTab = GoogleFonts.roboto(
   textStyle: TextStyle(
     fontSize: 18,
-    color: Colors.black
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
   ),
 );
 
@@ -14,6 +15,29 @@ var inactiveTab = GoogleFonts.roboto(
   textStyle: TextStyle(
     fontSize: 14,
     color: Colors.grey[400],
-//    fontWeight: FontWeight.bold
   ),
 );
+
+var titleTxt = GoogleFonts.roboto(
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+  ),
+);
+
+var newsTitle = GoogleFonts.roboto(
+  textStyle: TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+  ),
+);
+
+var contentTxt = GoogleFonts.roboto(
+  textStyle: TextStyle(
+    fontSize: 14,
+    color: Colors.black,
+  ),
+);
+
