@@ -46,7 +46,7 @@ class PrimaryCard extends StatelessWidget {
             SizedBox(height: 5.0),
             Expanded(
               child: Hero(
-                tag: article.seen,
+                tag: article.url,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
@@ -67,7 +67,34 @@ class PrimaryCard extends StatelessWidget {
               maxLines: 2,
               style: newsTitle,
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Text(
+                  moment(article.time),
+                  style: contentTxt.copyWith(color: Colors.grey[400]),
+                ),
+              ],
+            )
           ],
         ));
   }
+}
+
+moment(DateTime time) {
+  var now = DateTime.now();
+  var toCompare = DateTime(
+      time.year, time.month, time.day, time.hour, time.minute, time.second);
+  var day = now.difference(toCompare).inDays;
+  var hr = now.difference(toCompare).inHours;
+  var min = now.difference(toCompare).inMinutes;
+  var sec = now.difference(toCompare).inSeconds;
+
+  if (sec < 60 && min < 1) return "$sec sec ago";
+  if (min < 60 && hr < 1) return "$min mins ago";
+  if (hr < 24 && day < 1) return "$hr hours ago";
+  if (day == 1) return "$day day ago";
+  if (day > 1) return "$day days ago";
 }

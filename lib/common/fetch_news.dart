@@ -41,7 +41,7 @@ class CovidNewsList {
   Future<void> getViralNews() async {
     final now = DateTime.now();
     final thisMonth = new DateTime(now.year, now.month, 1);
-    String covidUrl = "https://newsapi.org/v2/top-headlines?q=COVID&from=$thisMonth&sortBy=publishedAt&apiKey=$apiKey";
+    String covidUrl = "https://newsapi.org/v2/top-headlines?q=COVID&from=$thisMonth&sortBy=publishedAt&language=en&apiKey=$apiKey";
     var response = await http.get(covidUrl);
     var jsonData = jsonDecode(response.body);
     print("json data: $jsonData");

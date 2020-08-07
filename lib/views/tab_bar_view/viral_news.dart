@@ -6,7 +6,7 @@ import 'package:flutter_news/views/news_content_view.dart';
 //import 'package:flutter_news/models/article.dart';
 import 'package:flutter_news/widgets/news_card.dart';
 import 'package:flutter_news/widgets/news_tile.dart';
-import 'package:flutter_news/widgets/vertical_news_card_list.dart';
+// import 'package:flutter_news/widgets/vertical_news_card_list.dart';
 
 class ViralNews extends StatefulWidget {
   @override
@@ -34,7 +34,6 @@ class _ViralNewsState extends State<ViralNews> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _isLoading = true;
     super.initState();
     getViralNews();
@@ -42,7 +41,6 @@ class _ViralNewsState extends State<ViralNews> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       child: _isLoading
           ? Center(
@@ -100,48 +98,36 @@ class _ViralNewsState extends State<ViralNews> {
 //                    );
 //                  },
 //                )
-                Container(
-                  margin: EdgeInsets.only(top: 16),
-                  child: ListView.builder(
-                      itemCount: newslist.length,
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return NewsTile(
-                          img: newslist[index].img ?? "",
-                          title: newslist[index].title ?? "",
-                          desc: newslist[index].desc ?? "",
-                          url: newslist[index].url ?? "",
-                        );
-                      }),
-                ),
-//                Container(
-//                  margin: EdgeInsets.only(top: 16),
-//                  child: ListView.builder(
-//                      itemCount: newslist.length,
-//                      scrollDirection: Axis.vertical,
-//                      shrinkWrap: true,
-//                      physics: ClampingScrollPhysics(),
-//                      itemBuilder: (context, index) {
-//                        return InkWell(
-//                          onTap: () {
-//                            Navigator.push(
-//                              context,
-//                              MaterialPageRoute(
-//                                builder: (context) =>
-//                                    NewsReaderView(article: newslist[index]),
-//                              ),
-//                            );
-//                          },
-//                          child: NewsTile(
-//                            img: newslist[index].img ?? "",
-//                            title: newslist[index].title ?? "",
-//                            desc: newslist[index].desc ?? "",
-//                            url: newslist[index].url ?? "",
-//                          ),
-//                        );
-//                      }),
-//                ),
+               Container(
+                 margin: EdgeInsets.only(top: 16),
+                 child: ListView.builder(
+                     itemCount: newslist.length,
+                     scrollDirection: Axis.vertical,
+                     shrinkWrap: true,
+                     physics: ClampingScrollPhysics(),
+                     itemBuilder: (context, index) {
+                       return InkWell(
+                         onTap: () {
+                           Navigator.push(
+                             context,
+                             MaterialPageRoute(
+                               builder: (context) =>
+                                   NewsReaderView(article: newslist[index]),
+                             ),
+                           );
+                         },
+                         child: Container(
+                            margin: EdgeInsets.only(right: 12),
+                            child: NewsTile(
+                           img: newslist[index].img ?? "",
+                           title: newslist[index].title ?? "",
+                           desc: newslist[index].desc ?? "",
+                           url: newslist[index].url ?? "",
+                         ),
+                          ),
+                       );
+                     }),
+               ),
               ],
             ),
     );

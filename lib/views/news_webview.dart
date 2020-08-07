@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class ArticleWebView extends StatefulWidget {
-
   final String postUrl;
   ArticleWebView({@required this.postUrl});
 
@@ -12,8 +12,8 @@ class ArticleWebView extends StatefulWidget {
 }
 
 class _ArticleViewState extends State<ArticleWebView> {
+  InAppWebViewController webView;
 
-  final Completer<WebViewController> _controller = Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +43,56 @@ class _ArticleViewState extends State<ArticleWebView> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        child: WebView(
+        child: InAppWebView(
           initialUrl:  widget.postUrl,
-          onWebViewCreated: (WebViewController webViewController){
-            _controller.complete(webViewController);
+          initialHeaders: {},
+          onWebViewCreated: (InAppWebViewController webViewController){
+            webView = webViewController;
           },
+          onLoadStart: (InAppWebViewController controller, String url){},
+          onLoadStop: (InAppWebViewController controller, String url){},
         ),
       ),
     );
   }
+
+  // final Completer<WebViewController> _controller = Completer<WebViewController>();
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  // appBar: AppBar(
+  //   title: Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: <Widget>[
+  //       Text(
+  //         "Flutter",
+  //         style:
+  //         TextStyle(color: Colors.black87, fontWeight: FontWeight.w600),
+  //       ),
+  //       Text(
+  //         "News",
+  //         style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w600),
+  //       )
+  //     ],
+  //   ),
+      //   actions: <Widget>[
+      //     Container(
+      //         padding: EdgeInsets.symmetric(horizontal: 16),
+      //         child: Icon(Icons.share,))
+      //   ],
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0.0,
+      // ),
+      // body: Container(
+      //   height: MediaQuery.of(context).size.height,
+      //   width: MediaQuery.of(context).size.width,
+      //   child: WebView(
+      //     initialUrl:  widget.postUrl,
+      //     onWebViewCreated: (WebViewController webViewController){
+      //       _controller.complete(webViewController);
+      //     },
+      //   ),
+      // ),
+  //   );
+  // }
 }

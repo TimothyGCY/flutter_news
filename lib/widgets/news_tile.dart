@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_news/views/news_webview.dart';
+// import 'package:flutter_news/views/news_webview.dart';
 
 class NewsTile extends StatelessWidget {
   final String img, title, content, desc, url;
@@ -10,19 +10,19 @@ class NewsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context) => ArticleWebView(
-              postUrl: url,
-            )
-        ));
-      },
+      // onTap: (){
+      //   Navigator.push(context, MaterialPageRoute(
+      //       builder: (context) => ArticleWebView(
+      //         postUrl: url,
+      //       )
+      //   ));
+      // },
       child: Container(
           margin: EdgeInsets.only(bottom: 24),
           width: MediaQuery.of(context).size.width,
           child: Container(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.only(left: 12),
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(6),bottomLeft:  Radius.circular(6))
@@ -33,12 +33,12 @@ class NewsTile extends StatelessWidget {
                 children: <Widget>[
                   ClipRRect(
                       borderRadius: BorderRadius.circular(6),
-                      child: Image.network(
+                      child: Hero(tag: url, child: Image.network(
                         img,
                         height: 200,
                         width: MediaQuery.of(context).size.width,
                         fit: BoxFit.cover,
-                      )),
+                      ))),
                   SizedBox(height: 12,),
                   Text(
                     title,
