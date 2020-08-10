@@ -15,17 +15,16 @@ class ViralNews extends StatefulWidget {
 
 class _ViralNewsState extends State<ViralNews> {
   bool _isLoading = true;
-  double progress = 0.2;
   var covidlist;
   var newslist;
 
   void getViralNews() async {
-    ViralNewsList article = ViralNewsList();
-    await article.getViralNews();
-    newslist = article.viralNewsList;
-    CovidNewsList covid = CovidNewsList();
-    await covid.getViralNews();
-    covidlist = covid.covidNewsList;
+    AllNews article = AllNews();
+    await article.getNewsList("viral");
+    newslist = article.news;
+    AllNews covid = AllNews();
+    await covid.getNewsList("covid");
+    covidlist = covid.news;
     print("covidlist: $covidlist");
     setState(() {
       _isLoading = false;

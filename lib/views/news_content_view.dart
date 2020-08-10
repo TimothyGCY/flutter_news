@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_news/constants.dart';
 import 'package:flutter_news/models/article.dart';
 import 'package:flutter_news/widgets/circle_button.dart';
+import 'package:intl/intl.dart';
 
 class NewsReaderView extends StatelessWidget {
   final Article article;
@@ -96,7 +98,7 @@ class NewsReaderView extends StatelessWidget {
             SizedBox(height: 15.0),
             Row(
               children: [
-                Text(postTime(article.time), style: contentTxt),
+                Text(DateFormat("dd MMM yyyy \t h:mma").format(article.time), style: contentTxt),
                 SizedBox(width: 5.0),
                 SizedBox(
                   width: 10.0,
@@ -106,16 +108,17 @@ class NewsReaderView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 5.0),
-                Text(
+                Flexible(child: Text(
                   article.author,
                   style: contentTxt.copyWith(color: Colors.black),
-                ),
+                ),),
               ],
             ),
             SizedBox(height: 15.0),
             Text(
               article.content,
               style: contentTxt,
+              textAlign: TextAlign.justify,
             ),
             SizedBox(height: 25.0)
           ],
@@ -141,11 +144,4 @@ class Status extends StatelessWidget {
       ],
     );
   }
-}
-
-postTime(time) {
-  var date =
-      "${time.year}-${time.month >= 10 ? time.month : '0' + time.month.toString()}-${time.day >= 10 ? time.day : '0' + time.day.toString()}";
-  var clock = "${time.hour >= 10 ? time.hour : '0' + time.hour.toString()}:${time.minute >= 10 ? time.minute : '0' + time.minute.toString()}:${time.second >= 10 ? time.second : '0' + time.second.toString()}";
-  return date + " " + clock;
 }

@@ -27,7 +27,6 @@ class _NavbarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(child: _navView.elementAt(_selectedIndex)),

@@ -3,46 +3,19 @@ import 'package:flutter_news/models/article.dart';
 import 'dart:convert';
 import 'package:flutter_news/constants.dart';
 
-class ViralNewsList {
-  List<Article> viralNewsList = [];
-
-  Future<void> getViralNews() async {
-    String viralUrl = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=$apiKey";
-    var response = await http.get(viralUrl);
-    var jsonData = jsonDecode(response.body);
-    print("json data: $jsonData");
-
-    if(jsonData['status'] == "ok"){
-      jsonData["articles"].forEach((element){
-        if(element['urlToImage'] != null && element['content'] != null){
-          Article article = new Article(
-              title: element['title'],
-              content: element['content'],
-              desc: element["description"],
-              author: element['author'],
-              source: element['source']['name'],
-              img: element['urlToImage'],
-              time: DateTime.parse(element['publishedAt']),
-              url: element["url"],
-              fav: false,
-              seen: false
-          );
-          viralNewsList.add(article);
-          print("viralNewsList: $viralNewsList");
-        }
-      });
+class AllNews {
+  List<Article> news = [];
+  Future<void> getNewsList(category) async {
+    var now = DateTime.now();
+    var thisMonth = new DateTime(now.year, now.month, 1);
+    String url;
+    switch(category) {
+      case "covid": url = "https://newsapi.org/v2/top-headlines?q=COVID&from=$thisMonth&sortBy=publishedAt&language=en&apiKey=$apiKey"; break;
+      case "viral": url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=$apiKey"; break;
+      case "msia": url = "https://newsapi.org/v2/top-headlines?country=my&apiKey=$apiKey"; break;
+      default: url = "https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com,bbc.com,cnn.com&apiKey=$apiKey"; break;
     }
-  }
-}
-
-class CovidNewsList {
-  List<Article> covidNewsList = [];
-
-  Future<void> getViralNews() async {
-    final now = DateTime.now();
-    final thisMonth = new DateTime(now.year, now.month, 1);
-    String covidUrl = "https://newsapi.org/v2/top-headlines?q=COVID&from=$thisMonth&sortBy=publishedAt&language=en&apiKey=$apiKey";
-    var response = await http.get(covidUrl);
+    var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
     print("json data: $jsonData");
 
@@ -53,7 +26,7 @@ class CovidNewsList {
               title: element['title'],
               content: element['content'],
               desc: element['description'],
-              author: element['author'],
+              author: (element['author'] == null || element['author'].toString().contains("https")) ? "Anonymous" : element['author'],
               source: element['source']['name'],
               img: element['urlToImage'],
               time: DateTime.parse(element['publishedAt']),
@@ -61,20 +34,10 @@ class CovidNewsList {
               fav: false,
               seen: false
           );
-          covidNewsList.add(article);
-          print("viralNewsList: $covidNewsList");
+          news.add(article);
+          print("viralNewsList: $news");
         }
       });
     }
   }
-}
-
-class GlobalNewsList {
-  List<Article> news = [];
-  String globalUrl = "https://newsapi.org/v2/everything?sources=bbc-news&apiKey=$apiKey";
-}
-
-class MsiaNewsList {
-  List<Article> news = [];
-  String msiaUrl = "https://newsapi.org/v2/top-headlines?country=my&apiKey=$apiKey";
 }

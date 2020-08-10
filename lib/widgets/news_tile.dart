@@ -22,7 +22,7 @@ class NewsTile extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           child: Container(
             child: Container(
-              padding: EdgeInsets.only(left: 12),
+              padding: EdgeInsets.only(left: 12, top: 12),
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(6),bottomLeft:  Radius.circular(6))

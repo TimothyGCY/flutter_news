@@ -9,7 +9,6 @@ class PrimaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
         width: 300,
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
