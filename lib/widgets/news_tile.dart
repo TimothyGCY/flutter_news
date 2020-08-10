@@ -31,14 +31,12 @@ class NewsTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: Hero(tag: url, child: Image.network(
-                        img,
-                        height: 200,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.cover,
-                      ))),
+                  Hero(tag: url, child: Image.network(
+                    img,
+                    height: 200,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                  )),
                   SizedBox(height: 12,),
                   Text(
                     title,

@@ -13,7 +13,7 @@ class AllNews {
       case "covid": url = "https://newsapi.org/v2/top-headlines?q=COVID&from=$thisMonth&sortBy=publishedAt&language=en&apiKey=$apiKey"; break;
       case "viral": url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=$apiKey"; break;
       case "msia": url = "https://newsapi.org/v2/top-headlines?country=my&apiKey=$apiKey"; break;
-      default: url = "https://newsapi.org/v2/everything?domains=techcrunch.com,thenextweb.com,bbc.com,cnn.com&apiKey=$apiKey"; break;
+      default: url = "https://newsapi.org/v2/everything?sources=bbc-news&language=en&apiKey=$apiKey"; break;
     }
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
@@ -21,7 +21,7 @@ class AllNews {
 
     if(jsonData['status'] == "ok"){
       jsonData["articles"].forEach((element){
-        if(element['urlToImage'] != null && element['content'] != null){
+        if(element['urlToImage'] != null && element['content'] != null && element['publishedAt'] != null){
           Article article = new Article(
               title: element['title'],
               content: element['content'],
