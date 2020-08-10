@@ -47,7 +47,7 @@ class NewsReaderView extends StatelessWidget {
           children: [
             SizedBox(height: 12.0),
             Hero(
-              tag: article.url,
+              tag: article.id,
               child: Container(
                 height: 220.0,
                 decoration: BoxDecoration(

@@ -118,6 +118,7 @@ class _ViralNewsState extends State<ViralNews> {
                          child: Container(
                             margin: EdgeInsets.only(right: 12),
                             child: NewsTile(
+                              id: newslist[index].id,
                            img: newslist[index].img ?? "",
                            title: newslist[index].title ?? "",
                            desc: newslist[index].desc ?? "",

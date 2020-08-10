@@ -56,6 +56,7 @@ class _GlobalNewsState extends State<GlobalNews> {
                     child: Container(
                       margin: EdgeInsets.only(right: 12),
                       child: NewsTile(
+                        id: globalNews[index].id,
                         img: globalNews[index].img ?? "",
                         title: globalNews[index].title ?? "",
                         desc: globalNews[index].desc ?? "",

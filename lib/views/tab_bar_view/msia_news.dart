@@ -56,6 +56,7 @@ class _MsiaNewsState extends State<MsiaNews> {
                     child: Container(
                       margin: EdgeInsets.only(right: 12),
                       child: NewsTile(
+                        id: msiaNews[index].id,
                         img: msiaNews[index].img ?? "",
                         title: msiaNews[index].title ?? "",
                         desc: msiaNews[index].desc ?? "",

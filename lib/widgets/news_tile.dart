@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_news/views/news_webview.dart';
 
 class NewsTile extends StatelessWidget {
-  final String img, title, content, desc, url;
+  final String img, title, content, desc, url, id;
 
-  NewsTile({this.img, this.content, this.desc, this.title, @required this.url});
+  NewsTile({this.img, this.content, this.desc, this.title, this.url, @required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class NewsTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Hero(tag: url, child: Image.network(
+                  Hero(tag: id, child: Image.network(
                     img,
                     height: 200,
                     width: MediaQuery.of(context).size.width,

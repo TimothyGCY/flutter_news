@@ -1,4 +1,5 @@
 class Article {
+  String id;
   String title;
   String content;
   String desc;
@@ -10,7 +11,7 @@ class Article {
   bool seen;
   bool fav;
 
-  Article({this.author, this.title, this.content, this.desc, this.source, this.time, this.url, this.img, this.seen, this.fav});
+  Article({this.id, this.author, this.title, this.content, this.desc, this.source, this.time, this.url, this.img, this.seen, this.fav});
 }
 //List<Article> viralList = viralNewsList;
 //List<Article> viralList = [

@@ -45,7 +45,7 @@ class PrimaryCard extends StatelessWidget {
             SizedBox(height: 5.0),
             Expanded(
               child: Hero(
-                tag: article.url,
+                tag: article.id,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15.0),
