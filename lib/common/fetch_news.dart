@@ -5,7 +5,7 @@ import 'package:flutter_news/constants.dart';
 
 class AllNews {
   List<Article> news = [];
-//  int _id = 0;
+
   Future<void> getNewsList(category) async {
     var now = DateTime.now();
     var thisMonth = new DateTime(now.year, now.month, 1);
@@ -29,7 +29,6 @@ class AllNews {
     }
     var response = await http.get(url);
     var jsonData = jsonDecode(response.body);
-    print("json data: $jsonData");
 
     if (jsonData['status'] == "ok") {
       jsonData["articles"].forEach((element) {
@@ -52,9 +51,7 @@ class AllNews {
               url: element["url"],
               fav: false,
               seen: false);
-//          print("id: $_id");
           news.add(article);
-          print("viralNewsList: $news");
         }
       });
     }

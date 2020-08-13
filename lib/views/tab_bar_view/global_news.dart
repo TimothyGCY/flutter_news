@@ -1,44 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_news/common/fetch_news.dart';
 import 'package:flutter_news/widgets/news_tile.dart';
-import '../news_content_view.dart';
+import 'package:flutter_news/views/news_content_view.dart';
+import 'package:flutter_news/constants.dart';
+import 'package:flutter_news/views/news_webview.dart';
 
-class GlobalNews extends StatefulWidget {
-  @override
-  _GlobalNewsState createState() => _GlobalNewsState();
-}
-
-class _GlobalNewsState extends State<GlobalNews> {
-  bool _isLoading = true;
-  var globalNews;
-
-  void getMsiaNews() async {
-    AllNews news = AllNews();
-    await news.getNewsList("global");
-    globalNews = news.news;
-    this.setState(() {
-      _isLoading = false;
-    });
-  }
-
-  @override
-  void initState() {
-    _isLoading = true;
-    super.initState();
-    getMsiaNews();
-  }
-
+class GlobalNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: _isLoading ? Center(
-        child: CircularProgressIndicator(),
-      ) : ListView(
+      child: ListView(
         children: [
           Container(
             margin: EdgeInsets.only(top: 16),
             child: ListView.builder(
-                itemCount: globalNews.length,
+                itemCount: globNews.length,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
@@ -49,18 +24,18 @@ class _GlobalNewsState extends State<GlobalNews> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              NewsReaderView(article: globalNews[index]),
+                              ArticleWebView(postUrl: globNews[index].url,),
                         ),
                       );
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 12),
                       child: NewsTile(
-                        id: globalNews[index].id,
-                        img: globalNews[index].img ?? "",
-                        title: globalNews[index].title ?? "",
-                        desc: globalNews[index].desc ?? "",
-                        url: globalNews[index].url ?? "",
+                        id: globNews[index].id,
+                        img: globNews[index].img ?? "",
+                        title: globNews[index].title ?? "",
+                        desc: globNews[index].desc ?? "",
+                        url: globNews[index].url ?? "",
                       ),
                     ),
                   );

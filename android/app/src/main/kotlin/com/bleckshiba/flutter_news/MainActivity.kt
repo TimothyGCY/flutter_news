@@ -1,4 +1,4 @@
-package com.bleckshiba.flutter_news
+package com.bleckshiba.flutternews
 
 import io.flutter.embedding.android.FlutterActivity
 

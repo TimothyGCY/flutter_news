@@ -1,14 +1,60 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_news/common/fetch_news.dart';
 import 'package:flutter_news/views/tab_bar_view/global_news.dart';
 import 'package:flutter_news/views/tab_bar_view/msia_news.dart';
 import 'package:flutter_news/views/tab_bar_view/viral_news.dart';
+import 'package:flutter_news/constants.dart';
 
-import '../constants.dart';
+class Home extends StatefulWidget {
+  _HomeState createState() => _HomeState();
+}
 
-class Home extends StatelessWidget {
+class _HomeState extends State<Home> {
+  bool _isLoading = true;
+
+  void populateNews() async{
+    for(int i = 0; i < newsCategory.length; i++){
+      switch(newsCategory[i]){
+        case "covid":
+          AllNews covid = AllNews();
+          await covid.getNewsList(newsCategory[i]);
+          covidNews = covid.news;
+          break;
+        case "viral":
+          AllNews viral = AllNews();
+          await viral.getNewsList(newsCategory[i]);
+          viralNews = viral.news;
+          break;
+        case "msia":
+          AllNews msia = AllNews();
+          await msia.getNewsList(newsCategory[i]);
+          msiaNews = msia.news;
+          break;
+        default:
+          AllNews glob = AllNews();
+          await glob.getNewsList(newsCategory[i]);
+          globNews = glob.news;
+          break;
+      }
+//      allnews.add(news.news);
+    }
+    this.setState(() {
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    _isLoading = true;
+    super.initState();
+    populateNews();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return newsTab();
+    return _isLoading ? Center(
+      child: CircularProgressIndicator(),
+    ) : newsTab();
   }
 }
 
